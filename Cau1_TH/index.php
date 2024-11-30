@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Chọn Vai Trò</title>
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
 </head>
 <body>
     <div class="container mt-4">

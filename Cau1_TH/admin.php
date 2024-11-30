@@ -11,7 +11,7 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <title>Quản trị loài hoa</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap-icons/icons">
 </head>
 <body>
