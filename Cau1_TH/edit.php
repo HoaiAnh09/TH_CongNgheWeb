@@ -44,17 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sửa Loài Hoa</title>
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-    <style>
-        .bg-light {
-            background-image: linear-gradient(120deg, #1d4a69 0%, #90f99e 100%);
-        }
-    </style>
+
 </head>
 <body>
 
 <header class="bg-light p-3 mb-4">
     <nav class="nav d-flex justify-content-center">
-    <nav class="nav d-flex fs-1 justify-content-center" style="color:white;">
+    <nav class="nav d-flex fs-1 justify-content-center" style="color:Black;">
             <a>Sửa thông tin loài hoa</a>
     </nav>
     </nav>
