@@ -1,48 +1,46 @@
 <?php
-// Đọc nội dung từ file quiz.txt
-$filename = 'quiz.txt';
-$lines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+include 'data.php';
+
+// Lấy câu trả lời đúng từ cơ sở dữ liệu
+$sql = "SELECT id, correct_answer FROM questions";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result();
 
 $answers = [];
-foreach ($lines as $line) {
-    if (strpos($line, 'ANSWER:') === 0) {
-        $answers[] = trim(substr($line, 7)); // Lấy đáp án từ dòng "ANSWER: X"
-    }
+while ($row = $result->fetch_assoc()) {
+    $answers[$row['id']] = $row['correct_answer'];
 }
 
-// Xử lý kết quả từ form
-$userAnswers = $_POST;
 $score = 0;
+$total = count($answers);
 
-foreach ($answers as $index => $correctAnswer) {
-    $userAnswerKey = "question_$index";
-    if (isset($userAnswers[$userAnswerKey]) && $userAnswers[$userAnswerKey] === $correctAnswer) {
+// Duyệt qua các câu trả lời người dùng và tính điểm
+foreach ($_POST as $key => $userAnswer) {
+    $questionId = (int)filter_var($key, FILTER_SANITIZE_NUMBER_INT); // Lấy ID câu hỏi từ tên input
+    if (isset($answers[$questionId]) && $answers[$questionId] === $userAnswer) {
         $score++;
     }
 }
-
-// Tổng số câu hỏi
-$totalQuestions = count($answers);
 ?>
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kết Quả</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Kết quả bài kiểm tra</title>
+    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap-5.3.3-dist/icon/bootstrap-icons.min.css">
 </head>
 <body>
     <div class="container mt-5">
+        <h1 class="text-center mb-4">Kết quả bài kiểm tra</h1>
         <div class="alert alert-success text-center">
-            <h2>Kết Quả</h2>
-            <p>Bạn đã trả lời đúng <strong><?php echo $score; ?></strong> trên tổng số <strong><?php echo $totalQuestions; ?></strong> câu hỏi.</p>
+            Bạn trả lời đúng <strong><?php echo $score; ?></strong>/<strong><?php echo $total; ?></strong> câu.
         </div>
-        <div class="text-center">
-            <a href="index.php" class="btn btn-primary">Làm lại</a>
+        <div class="text-center mt-3">
+            <a href="index.php" class="btn btn-success">Làm lại</a>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
