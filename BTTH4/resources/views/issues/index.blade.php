@@ -2,21 +2,47 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý Sự Cố</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Danh sách Sự Cố</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+        .btn {
+            border-radius: 5px;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            color: #fff;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Danh sách Sự Cố</h1>
-
-        <div class="d-flex justify-content-between mb-3">
-            <a href="{{ route('issues.create') }}" class="btn btn-primary">Thêm Sự Cố Mới</a>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-primary">Danh Sách Sự Cố</strong></h2>
+            <button class="btn btn-primary">Thêm Sự Cố</button>
         </div>
-
         <div class="table-responsive">
             @if (session('success'))
             <div class="alert alert-success">
