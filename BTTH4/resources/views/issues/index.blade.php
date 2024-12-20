@@ -40,9 +40,10 @@
 <body>
     <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="text-primary">Danh Sách Sự Cố</strong></h2>
-            <button class="btn btn-primary">Thêm Sự Cố</button>
+            <h2 class="text-primary">Danh sách Sự Cố</></h2>
+            <a href="{{ route('issues.create') }}" class="btn btn-primary">Thêm Sự Cố Mới</a>
         </div>
+
         <div class="table-responsive">
             @if (session('success'))
             <div class="alert alert-success">
