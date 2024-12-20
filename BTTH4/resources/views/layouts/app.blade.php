@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        @yield('content') <!-- Đây là phần nội dung sẽ được thay thế -->
+        @yield('content')
     </div>
 </body>
 </html>
